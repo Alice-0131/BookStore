@@ -1,0 +1,4 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "Unix Makefiles" -S /mnt/c/Users/阿丝儿心心/CLionProjects/Bookstore-2024 -B /mnt/c/Users/阿丝儿心心/CLionProjects/Bookstore-2024/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /mnt/c/Users/阿丝儿心心/CLionProjects/Bookstore-2024/cmake-build-debug
