@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <vector>
+#include <algorithm>
 
 bool cmp(const Book& a, const Book& b) {
     return a.ISBN < b.ISBN;

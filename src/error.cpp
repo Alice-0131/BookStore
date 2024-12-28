@@ -1,5 +1,4 @@
 #include <string>
-#include <set>
 #include "../include/error.hpp"
 
 ErrorException::ErrorException(std::string message) {
