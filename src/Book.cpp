@@ -7,7 +7,11 @@
 #include <algorithm>
 
 bool cmp(const Book& a, const Book& b) {
-    return a.ISBN < b.ISBN;
+    if (strcmp(a.ISBN, b.ISBN) < 0) {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 Book::Book(std::string& ISBN) {
@@ -113,7 +117,7 @@ void BookSystem::buy(std::string &ISBN, std::string &Quantity) {
     if (quantity > book.Inventory) {
         error("Invalid\n");
     }
-    std::cout << book.Price * quantity << '\t';
+    std::cout << book.Price * quantity << '\n';
     book.Inventory -= quantity;
     book_river_.write(book, no[0]);
 }
