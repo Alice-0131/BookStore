@@ -70,9 +70,15 @@ void Check::checkBook3(std::string &input) { // TODO:不可见字符
     }
 }
 
-std::vector<std::string> Check::checkKeyword(const std::string &input) { // TODO:不可见字符
-    if (input.length() > 60 || input.empty()) {
-        error("Invalid\n");
+std::vector<std::string> Check::checkKeyword(const std::string &input, bool flag) { // TODO:不可见字符
+    if (!flag) {
+        if (input.length() > 60 || input.empty()) {
+            error("Invalid\n");
+        }
+    } else {
+        if (input.length() > 60) {
+            error("Invalid\n");
+        }
     }
     std::vector<std::string> keywords;
     std::string keyword;
@@ -97,7 +103,7 @@ std::vector<std::string> Check::checkKeyword(const std::string &input) { // TODO
 }
 
 int Check::checkBook4(std::string &input) {
-    if (input > "2147483647") {
+    if (input.length() > 10) {
         error("Invalid\n");
     }
     int Quantity = 0;

@@ -2,6 +2,7 @@
 #include "../include/error.hpp"
 #include "../include/File.hpp"
 #include <iostream>
+#include <iomanip>
 #include <vector>
 
 bool cmp(const Book& a, const Book& b) {
@@ -74,7 +75,7 @@ void BookSystem::show(std::string &input) {
             for (; i < input.length() - 1; ++i) {
                 keyword += input[i];
             }
-            Check::checkAccount3(keyword);
+            Check::checkBook3(keyword);
             no = Keyword_file.Find(keyword);
         } else {
             error("Invalid\n");
@@ -92,7 +93,8 @@ void BookSystem::show(std::string &input) {
     } else {
         for (int i = 0; i < books.size(); ++i) {
             std::cout << books[i].ISBN << '\t' << books[i].BookName << '\t' << books[i].Author << '\t';
-            std::cout << books[i].Keyword << '\t' << books[i].Price << '\t' << books[i].Inventory << '\n';
+            std::cout << books[i].Keyword << '\t' << std::fixed << std::setprecision(2) << books[i].Price << '\t';
+            std::cout << books[i].Inventory << '\n';
         }
     }
 }
@@ -141,6 +143,9 @@ void BookSystem::modify(std::vector<std::string> &input, LoginStack& login_stack
     std::string ISBN, name, author, keyword, price;
     std::vector<std::string> keywords;
     double PRICE;
+    if (input.empty()) {
+        error("Invalid\n");
+    }
     for (int i = 0; i < input.size(); ++i) {
         std::string type;
         int j = 0;
@@ -166,16 +171,24 @@ void BookSystem::modify(std::vector<std::string> &input, LoginStack& login_stack
                 error("Invalid\n");
             }
             flag_n = true;
-            for (; j < input[i].length(); ++j) {
+            if (input[i][j] != '"' || input[i][input[i].length() - 1] != '"') {
+                error("Invalid\n");
+            }
+            ++j;
+            for (; j < input[i].length() - 1; ++j) {
                 name += input[i][j];
             }
-            Check::checkBook2(name);
+            Check::checkAccount2(name);
         } else if (type == "-author") {
             if (flag_a) {
                 error("Invalid\n");
             }
             flag_a = true;
-            for (; j < input[i].length(); ++j) {
+            if (input[i][j] != '"' || input[i][input[i].length() - 1] != '"') {
+                error("Invalid\n");
+            }
+            ++j;
+            for (; j < input[i].length() - 1; ++j) {
                 author += input[i][j];
             }
             Check::checkBook2(author);
@@ -184,10 +197,14 @@ void BookSystem::modify(std::vector<std::string> &input, LoginStack& login_stack
                 error("Invalid\n");
             }
             flag_k = true;
-            for (; j < input[i].length(); ++j) {
+            if (input[i][j] != '"' || input[i][input[i].length() - 1] != '"') {
+                error("Invalid\n");
+            }
+            ++j;
+            for (; j < input[i].length() - 1; ++j) {
                 keyword += input[i][j];
             }
-            keywords = Check::checkKeyword(keyword);
+            keywords = Check::checkKeyword(keyword, false);
         } else if (type == "-price") {
             if (flag_p) {
                 error("Invalid\n");
@@ -226,7 +243,7 @@ void BookSystem::modify(std::vector<std::string> &input, LoginStack& login_stack
         strcpy(book.Author, author.c_str());
     }
     if (flag_k) {
-        std::vector<std::string> pre_keywords = Check::checkKeyword(book.Keyword);
+        std::vector<std::string> pre_keywords = Check::checkKeyword(book.Keyword, true);
         for (int i = 0; i < pre_keywords.size(); ++i) {
             Keyword_file.Delete(book_no, pre_keywords[i]);
         }
@@ -251,4 +268,5 @@ void BookSystem::import(std::string &Quantity, std::string &TotalCost, LoginStac
     Book book;
     book_river_.read(book, book_no);
     book.Inventory += quantity;
+    book_river_.write(book, book_no);
 }

@@ -25,7 +25,7 @@ public:
     static void checkBook1(std::string& input); //[ISBN]
     static void checkBook2(std::string& input); //[BookName], [Author]
     static void checkBook3(std::string& input); //单个[Keyword]
-    static std::vector<std::string> checkKeyword(const std::string& input); //多个[Keyword]
+    static std::vector<std::string> checkKeyword(const std::string& input, bool flag); //多个[Keyword]
     static int checkBook4(std::string& input); //[Quantity]
     static double checkBook5(std::string& input); //[Price], [TotalCost]
 };
