@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Bookstore-2024
+# Target rules for targets named code
 
 # Build rule for target.
-Bookstore-2024: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Bookstore-2024
-.PHONY : Bookstore-2024
+code: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 code
+.PHONY : code
 
 # fast build rule for target.
-Bookstore-2024/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/build
-.PHONY : Bookstore-2024/fast
+code/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/build
+.PHONY : code/fast
 
 src/Account.o: src/Account.cpp.o
 .PHONY : src/Account.o
 
 # target to build an object file
 src/Account.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Account.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Account.cpp.o
 .PHONY : src/Account.cpp.o
 
 src/Account.i: src/Account.cpp.i
@@ -142,7 +142,7 @@ src/Account.i: src/Account.cpp.i
 
 # target to preprocess a source file
 src/Account.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Account.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Account.cpp.i
 .PHONY : src/Account.cpp.i
 
 src/Account.s: src/Account.cpp.s
@@ -150,7 +150,7 @@ src/Account.s: src/Account.cpp.s
 
 # target to generate assembly for a file
 src/Account.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Account.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Account.cpp.s
 .PHONY : src/Account.cpp.s
 
 src/Book.o: src/Book.cpp.o
@@ -158,7 +158,7 @@ src/Book.o: src/Book.cpp.o
 
 # target to build an object file
 src/Book.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Book.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Book.cpp.o
 .PHONY : src/Book.cpp.o
 
 src/Book.i: src/Book.cpp.i
@@ -166,7 +166,7 @@ src/Book.i: src/Book.cpp.i
 
 # target to preprocess a source file
 src/Book.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Book.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Book.cpp.i
 .PHONY : src/Book.cpp.i
 
 src/Book.s: src/Book.cpp.s
@@ -174,7 +174,7 @@ src/Book.s: src/Book.cpp.s
 
 # target to generate assembly for a file
 src/Book.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Book.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Book.cpp.s
 .PHONY : src/Book.cpp.s
 
 src/Diary.o: src/Diary.cpp.o
@@ -182,7 +182,7 @@ src/Diary.o: src/Diary.cpp.o
 
 # target to build an object file
 src/Diary.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Diary.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Diary.cpp.o
 .PHONY : src/Diary.cpp.o
 
 src/Diary.i: src/Diary.cpp.i
@@ -190,7 +190,7 @@ src/Diary.i: src/Diary.cpp.i
 
 # target to preprocess a source file
 src/Diary.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Diary.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Diary.cpp.i
 .PHONY : src/Diary.cpp.i
 
 src/Diary.s: src/Diary.cpp.s
@@ -198,7 +198,7 @@ src/Diary.s: src/Diary.cpp.s
 
 # target to generate assembly for a file
 src/Diary.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/Diary.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/Diary.cpp.s
 .PHONY : src/Diary.cpp.s
 
 src/File.o: src/File.cpp.o
@@ -206,7 +206,7 @@ src/File.o: src/File.cpp.o
 
 # target to build an object file
 src/File.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/File.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/File.cpp.o
 .PHONY : src/File.cpp.o
 
 src/File.i: src/File.cpp.i
@@ -214,7 +214,7 @@ src/File.i: src/File.cpp.i
 
 # target to preprocess a source file
 src/File.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/File.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/File.cpp.i
 .PHONY : src/File.cpp.i
 
 src/File.s: src/File.cpp.s
@@ -222,7 +222,7 @@ src/File.s: src/File.cpp.s
 
 # target to generate assembly for a file
 src/File.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/File.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/File.cpp.s
 .PHONY : src/File.cpp.s
 
 src/TokenScanner.o: src/TokenScanner.cpp.o
@@ -230,7 +230,7 @@ src/TokenScanner.o: src/TokenScanner.cpp.o
 
 # target to build an object file
 src/TokenScanner.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/TokenScanner.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/TokenScanner.cpp.o
 .PHONY : src/TokenScanner.cpp.o
 
 src/TokenScanner.i: src/TokenScanner.cpp.i
@@ -238,7 +238,7 @@ src/TokenScanner.i: src/TokenScanner.cpp.i
 
 # target to preprocess a source file
 src/TokenScanner.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/TokenScanner.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/TokenScanner.cpp.i
 .PHONY : src/TokenScanner.cpp.i
 
 src/TokenScanner.s: src/TokenScanner.cpp.s
@@ -246,7 +246,7 @@ src/TokenScanner.s: src/TokenScanner.cpp.s
 
 # target to generate assembly for a file
 src/TokenScanner.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/TokenScanner.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/TokenScanner.cpp.s
 .PHONY : src/TokenScanner.cpp.s
 
 src/error.o: src/error.cpp.o
@@ -254,7 +254,7 @@ src/error.o: src/error.cpp.o
 
 # target to build an object file
 src/error.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/error.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/error.cpp.o
 .PHONY : src/error.cpp.o
 
 src/error.i: src/error.cpp.i
@@ -262,7 +262,7 @@ src/error.i: src/error.cpp.i
 
 # target to preprocess a source file
 src/error.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/error.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/error.cpp.i
 .PHONY : src/error.cpp.i
 
 src/error.s: src/error.cpp.s
@@ -270,7 +270,7 @@ src/error.s: src/error.cpp.s
 
 # target to generate assembly for a file
 src/error.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/error.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/error.cpp.s
 .PHONY : src/error.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -278,7 +278,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -286,7 +286,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -294,7 +294,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Bookstore-2024.dir/build.make CMakeFiles/Bookstore-2024.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/code.dir/build.make CMakeFiles/code.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -305,7 +305,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Bookstore-2024"
+	@echo "... code"
 	@echo "... src/Account.o"
 	@echo "... src/Account.i"
 	@echo "... src/Account.s"

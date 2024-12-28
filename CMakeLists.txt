@@ -3,7 +3,8 @@ project(Bookstore-2024)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Bookstore-2024 src/main.cpp
+add_executable(code
+        src/main.cpp
         include/File.hpp
         src/File.cpp
         include/Account.hpp

@@ -425,7 +425,23 @@ CMakeFiles/Bookstore-2024.dir/src/Book.cpp.o: ../src/Book.cpp \
   /usr/include/strings.h \
   ../include/error.hpp \
   ../include/File.hpp \
-  /usr/include/c++/11/iostream
+  /usr/include/c++/11/iostream \
+  /usr/include/c++/11/iomanip \
+  /usr/include/c++/11/locale \
+  /usr/include/c++/11/bits/locale_facets_nonio.h \
+  /usr/include/c++/11/ctime \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+  /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/11/bits/locale_conv.h \
+  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/quoted_string.h \
+  /usr/include/c++/11/sstream \
+  /usr/include/c++/11/bits/sstream.tcc
 
 CMakeFiles/Bookstore-2024.dir/src/Diary.cpp.o: ../src/Diary.cpp \
   /usr/include/stdc-predef.h
@@ -1227,6 +1243,18 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 
 ../src/Diary.cpp:
 
+/usr/include/c++/11/sstream:
+
+/usr/include/c++/11/bits/quoted_string.h:
+
+/usr/include/c++/11/bits/locale_conv.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h:
+
+/usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.h:
+
 ../src/Book.cpp:
 
 /usr/include/string.h:
@@ -1252,6 +1280,8 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
 
 /usr/include/c++/11/bits/istream.tcc:
+
+/usr/include/c++/11/bits/unique_ptr.h:
 
 /usr/include/c++/11/ostream:
 
@@ -1341,6 +1371,8 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
 
+/usr/include/c++/11/locale:
+
 /usr/include/linux/errno.h:
 
 /usr/include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h:
@@ -1350,6 +1382,8 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/__fpos64_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
+
+/usr/include/c++/11/bits/invoke.h:
 
 /usr/include/x86_64-linux-gnu/bits/timex.h:
 
@@ -1465,6 +1499,8 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
+/usr/include/c++/11/bits/uses_allocator.h:
+
 ../src/Account.cpp:
 
 /usr/include/c++/11/bits/stl_construct.h:
@@ -1519,6 +1555,8 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/bits/stl_tree.h:
 
+/usr/include/c++/11/tuple:
+
 /usr/include/c++/11/type_traits:
 
 /usr/include/c++/11/bits/exception_defines.h:
@@ -1534,6 +1572,8 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/compare:
 
 /usr/include/c++/11/bits/stl_function.h:
+
+/usr/include/c++/11/bits/locale_facets_nonio.tcc:
 
 /usr/include/x86_64-linux-gnu/bits/time.h:
 
@@ -1558,6 +1598,8 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
 /usr/include/c++/11/bits/stl_algo.h:
+
+/usr/include/c++/11/ctime:
 
 /usr/include/c++/11/bits/codecvt.h:
 
@@ -1588,6 +1630,8 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/locale.h:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/libintl.h:
 
 /usr/include/x86_64-linux-gnu/bits/endianness.h:
 
@@ -1637,9 +1681,13 @@ CMakeFiles/Bookstore-2024.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/bits/algorithmfwd.h:
 
+/usr/include/c++/11/iomanip:
+
 /usr/include/c++/11/ext/new_allocator.h:
 
 /usr/include/x86_64-linux-gnu/bits/thread-shared-types.h:
+
+/usr/include/c++/11/bits/sstream.tcc:
 
 /usr/include/strings.h:
 
