@@ -1,3 +1,29 @@
-//
-// Created by 阿丝儿心心 on 2024/12/21.
-//
+#include "../include/TokenScanner.hpp"
+#include "../include/error.hpp"
+
+TokenScanner::TokenScanner(std::string& input):str(input), index(0) {}
+
+std::string TokenScanner::nextToken() {
+    std::string next;
+    skipWhitespaces();
+    if (index >= str.length()) {
+        return "";
+    }
+    while (str[index] != ' ' && index < str.length()) {
+        next += str[index];
+        ++index;
+    }
+    return next;
+}
+
+bool TokenScanner::hasMoreTokens() {
+    skipWhitespaces();
+    return index < str.length();
+}
+
+
+void TokenScanner::skipWhitespaces() {
+    while (index < str.length() && str[index] == ' ') {
+        index++;
+    }
+}
