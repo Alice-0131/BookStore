@@ -3,6 +3,7 @@
 
 #include "Account.hpp"
 #include "File.hpp"
+#include "Diary.hpp"
 
 struct Book {
     char ISBN[21] = {0};
@@ -26,9 +27,9 @@ public:
 
     BookSystem();
     void show(std::string& input);
-    void buy(std::string& ISBN, std::string& Quantity);
+    void buy(std::string& ISBN, std::string& Quantity, Diary& diary);
     void select(std::string& ISBN, LoginStack& login_stack);
     void modify(std::vector<std::string>& input, LoginStack& login_stack);
-    void import(std::string& Quantity, std::string& TotalCost, LoginStack& login_stack);
+    void import(std::string& Quantity, std::string& TotalCost, LoginStack& login_stack, Diary& diary);
 };
 #endif //BOOK_HPP

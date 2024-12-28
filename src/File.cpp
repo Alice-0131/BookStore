@@ -21,10 +21,10 @@ int memory::compare(std::pair<char[64], int> a, std::pair<char[64], int> b) {
 
 memory::memory(const std::string &file1_name, const std::string &file2_name):
     file1_name(file1_name), file2_name(file2_name) {
-    //file1.open(file1_name, std::ios::binary | std::ios::in | std::ios::out);
-    //file2.open(file2_name, std::ios::binary | std::ios::in | std::ios::out);
-    file1.open(file1_name, std::ios::binary | std::ios::out);
-    file2.open(file2_name, std::ios::binary | std::ios::out);
+    file1.open(file1_name, std::ios::binary | std::ios::in | std::ios::out);
+    file2.open(file2_name, std::ios::binary | std::ios::in | std::ios::out);
+    //file1.open(file1_name, std::ios::binary | std::ios::out);
+    //file2.open(file2_name, std::ios::binary | std::ios::out);
     if (!file1) {
         file1.open(file1_name, std::ios::out | std::ios::binary);
     }

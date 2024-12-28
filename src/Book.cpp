@@ -1,6 +1,7 @@
 #include "../include/Book.hpp"
 #include "../include/error.hpp"
 #include "../include/File.hpp"
+#include "../include/Diary.hpp"
 #include <iostream>
 #include <iomanip>
 #include <vector>
@@ -104,7 +105,7 @@ void BookSystem::show(std::string &input) {
     }
 }
 
-void BookSystem::buy(std::string &ISBN, std::string &Quantity) {
+void BookSystem::buy(std::string &ISBN, std::string &Quantity, Diary& diary) {
     Check::checkBook1(ISBN);
     int quantity = Check::checkBook4(Quantity);
     std::vector<int> no;
@@ -117,7 +118,13 @@ void BookSystem::buy(std::string &ISBN, std::string &Quantity) {
     if (quantity > book.Inventory) {
         error("Invalid\n");
     }
-    std::cout << book.Price * quantity << '\n';
+    Deal deal(true, book.Price * quantity);
+    int size;
+    diary.deal_river_.get_info(size, 1);
+    diary.deal_river_.write(deal, size);
+    ++size;
+    diary.deal_river_.write_info(size, 1);
+    std::cout << std::fixed << std::setprecision(2) << book.Price * quantity << '\n';
     book.Inventory -= quantity;
     book_river_.write(book, no[0]);
 }
@@ -263,7 +270,7 @@ void BookSystem::modify(std::vector<std::string> &input, LoginStack& login_stack
     book_river_.write(book, book_no);
 }
 
-void BookSystem::import(std::string &Quantity, std::string &TotalCost, LoginStack& login_stack) {
+void BookSystem::import(std::string &Quantity, std::string &TotalCost, LoginStack& login_stack, Diary& diary) {
     int quantity = Check::checkBook4(Quantity);
     double total_cost = Check::checkBook5(TotalCost);
     int book_no = login_stack.stack[login_stack.stack.size() - 1].second;
@@ -274,4 +281,10 @@ void BookSystem::import(std::string &Quantity, std::string &TotalCost, LoginStac
     book_river_.read(book, book_no);
     book.Inventory += quantity;
     book_river_.write(book, book_no);
+    Deal deal(false, total_cost);
+    int size;
+    diary.deal_river_.get_info(size, 1);
+    diary.deal_river_.write(deal, size);
+    ++size;
+    diary.deal_river_.write_info(size, 1);
 }

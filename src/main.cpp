@@ -4,11 +4,12 @@
 
 #include "../include/Account.hpp"
 #include "../include/Book.hpp"
+#include "../include/Diary.hpp"
 #include "../include/error.hpp"
 #include "../include/File.hpp"
 #include "../include/TokenScanner.hpp"
 
-void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_system);
+void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_system, Diary& diary);
 
 memory ISBN("ISBN", "ISBN_no");
 memory BookName("BookName", "BookName_no");
@@ -18,6 +19,7 @@ memory Keyword("Keyword", "Keyword_no");
 int main() {
     LoginStack login_stack;
     BookSystem book_system;
+    Diary diary;
     login_stack.createroot("root", "sjtu", 7);
     while (true) {
         try {
@@ -26,7 +28,7 @@ int main() {
             if (input.empty()) {
                 continue;
             }
-            processLine(input, login_stack, book_system);
+            processLine(input, login_stack, book_system, diary);
         } catch (ErrorException &ex) {
             std::cout << ex.getMessage();
         }
@@ -35,7 +37,7 @@ int main() {
     return 0;
 }
 
-void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_system) {
+void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_system, Diary& diary) {
     TokenScanner scanner(line);
     std::string token = scanner.nextToken();
     if (token.empty()) {
@@ -97,7 +99,11 @@ void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_sy
     } else if (token == "show") {
         token = scanner.nextToken();
         if (token == "finance") {
-
+            std::string Count = scanner.nextToken();
+            if (login_stack.getPrivilege() < 7) {
+                error("Invalid\n");
+            }
+            diary.ShowFinance(Count);
         } else {
             if (login_stack.getPrivilege() < 1) {
                 error("Invalid\n");
@@ -110,7 +116,7 @@ void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_sy
         }
         std::string ISBN = scanner.nextToken();
         std::string Quantity = scanner.nextToken();
-        book_system.buy(ISBN, Quantity);
+        book_system.buy(ISBN, Quantity, diary);
     } else if (token == "select") {
         if (login_stack.getPrivilege() < 3) {
             error("Invalid\n");
@@ -134,7 +140,7 @@ void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_sy
         }
         std::string Quantity = scanner.nextToken();
         std::string TotalCost = scanner.nextToken();
-        book_system.import(Quantity, TotalCost, login_stack);
+        book_system.import(Quantity, TotalCost, login_stack, diary);
     } else if (token == "log") {
 
     } else if (token == "report") {
