@@ -56,7 +56,6 @@ public:
     void initialise(std::string FN = "") {
         if (FN != "") file_name = FN;
         file.open(file_name, std::ios::out | std::ios::in | std::ios::binary);
-        //file.open(file_name, std::ios::out | std::ios::binary);
         if (!file) {
             file.open(file_name, std::ios::out | std::ios::binary);
             int tmp = 0;

@@ -97,6 +97,11 @@ std::vector<std::string> Check::checkKeyword(const std::string &input, bool flag
             keyword += input[i];
         }
     }
+    for (int j = 0; j < keywords.size(); ++j) {
+        if (keyword == keywords[j]) {
+            error("Invalid\n");
+        }
+    }
     keywords.push_back(keyword);
     return keywords;
 }

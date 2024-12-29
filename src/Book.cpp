@@ -77,7 +77,7 @@ void BookSystem::show(std::string &input) {
             for (; i < input.length() - 1; ++i) {
                 author += input[i];
             }
-            Check::checkAccount2(author);
+            Check::checkBook2(author);
             no = Author_file.Find(author);
         } else if (type == "-keyword") {
             std::string keyword;
