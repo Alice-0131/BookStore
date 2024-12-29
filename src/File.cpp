@@ -47,7 +47,7 @@ memory::memory(const std::string &file1_name, const std::string &file2_name):
     file2.close();
 }
 
-memory::~memory() {
+void memory::end() {
     file1.open(file1_name, std::ios::binary | std::ios::out);
     node* current = head -> next;
     delete head;
@@ -57,7 +57,9 @@ memory::~memory() {
         delete current;
         current = next;
     }
+    file1.close();
 }
+
 
 void memory::Insert(int value, const std::string &index) {
     file2.open(file2_name, std::ios::in | std::ios::out | std::ios::binary);

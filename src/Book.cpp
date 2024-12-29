@@ -28,6 +28,13 @@ Keyword_file("Keyword", "Keyword_no")
     book_river_.initialise("book");
 }
 
+void BookSystem::end() {
+    ISBN_file.end();
+    BookName_file.end();
+    Author_file.end();
+    Keyword_file.end();
+}
+
 void BookSystem::show(std::string &input) {
     std::vector<int> no;
     if (input.empty()) {

@@ -27,6 +27,7 @@ private:
 public:
     int getPrivilege();
     LoginStack();
+    void end();
     void su(std::string& UserID, std::string& Password);
     void su(std::string& UserID);
     void logout();
@@ -35,7 +36,7 @@ public:
     void passwd(std::string& UserID, std::string& NewPassword);
     void useradd(std::string& UserID, std::string& Password, std::string& Privilege, std::string& Username);
     void Delete(std::string& UserID);
-    void createroot(std::string UserID, std::string Password, int Privilege);
+    void createroot();
 };
 
 #endif //ACCOUNT_HPP

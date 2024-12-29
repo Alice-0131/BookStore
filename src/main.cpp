@@ -11,20 +11,19 @@
 
 void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_system, Diary& diary);
 
-memory ISBN("ISBN", "ISBN_no");
-memory BookName("BookName", "BookName_no");
-memory Author("Author", "Author_no");
-memory Keyword("Keyword", "Keyword_no");
-
 int main() {
     LoginStack login_stack;
     BookSystem book_system;
     Diary diary;
-    login_stack.createroot("root", "sjtu", 7);
+    login_stack.createroot();
     while (true) {
         try {
             std::string input;
-            getline(std::cin, input);
+            if (!std::getline(std::cin, input)) {
+                login_stack.end();
+                book_system.end();
+                return 0;
+            }
             if (input.empty()) {
                 continue;
             }
@@ -33,7 +32,8 @@ int main() {
             std::cout << ex.getMessage();
         }
     }
-
+    login_stack.end();
+    book_system.end();
     return 0;
 }
 
@@ -44,6 +44,8 @@ void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_sy
         return;
     }
     if (token == "exit" || token == "quit") {
+        login_stack.end();
+        book_system.end();
         exit(0);
     } else if (token == "su") {
         std::string UserID = scanner.nextToken();

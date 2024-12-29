@@ -26,6 +26,7 @@ public:
     MemoryRiver<Book> book_river_;
 
     BookSystem();
+    void end();
     void show(std::string& input);
     void buy(std::string& ISBN, std::string& Quantity, Diary& diary);
     void select(std::string& ISBN, LoginStack& login_stack);

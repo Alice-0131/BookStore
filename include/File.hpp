@@ -35,11 +35,11 @@ private:
 
 public:
     memory(const std::string& file1_name, const std::string& file2_name);
-    ~memory();
     void Insert(int value, const std::string& index);
     void Delete(int value, const std::string& index);
     std::vector<int> Find(const std::string& index);
     std::vector<int> readAll();
+    void end();
 };
 
 template<class T, int info_len = 1>
@@ -59,10 +59,10 @@ public:
         //file.open(file_name, std::ios::out | std::ios::binary);
         if (!file) {
             file.open(file_name, std::ios::out | std::ios::binary);
+            int tmp = 0;
+            for (int i = 0; i < info_len; ++i)
+                file.write(reinterpret_cast<char *>(&tmp), sizeof(int));
         }
-        int tmp = 0;
-        for (int i = 0; i < info_len; ++i)
-            file.write(reinterpret_cast<char *>(&tmp), sizeof(int));
         file.close();
     }
 
@@ -89,14 +89,6 @@ public:
     //位置索引index可以取为对象写入的起始位置
     void write(T &t, const int index) {
         file.open(file_name, std::fstream::in | std::fstream::out | std::fstream::binary);
-        file.seekp(static_cast<long long int>(index) * sizeofT + info_len * sizeof(int));
-        file.write(reinterpret_cast<const char *>(&t), sizeofT);
-        file.close();
-    }
-
-    //用t的值更新位置索引index对应的对象，保证调用的index都是由write函数产生
-    void update(T &t, const int index) {
-        file.open(file_name, std::fstream::binary | std::fstream::in | std::fstream::out);
         file.seekp(static_cast<long long int>(index) * sizeofT + info_len * sizeof(int));
         file.write(reinterpret_cast<const char *>(&t), sizeofT);
         file.close();
