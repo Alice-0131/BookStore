@@ -78,16 +78,56 @@
 - 操作方式：直接输出
 
 ## 用户交互设计
-### 用户管理模块
-- 用户注册：register username password
-- 输出结果：succeed/fail
-- 用户登录：login username password
-- 输出结果：succeed/fail
+### 基础模块
+- 退出系统
+  - 输入：quit/exit
+  - 输出：无
+### 账户模块
+- 登录账户
+  - 输入：su [UserID] ([Password])?
+  - 输出：无
+- 注销账户
+  - 输入：logout
+  - 输出：无
+- 注册账户
+  - 输入：register [UserID] [Password] [Username]
+  - 输出：无
+- 修改密码
+  - 输入：passwd [UserID] ([CurrentPassword])? [NewPassword]
+  - 输出：无
+- 创建账户
+  - 输入：useradd [UserID] [Password] [Privilege] [Username]
+  - 输出：无
+- 删除账户
+  - 输入：delete [UserID]
+  - 输出：无
+### 图书模块
+- 检索图书
+  - 输入：show (-ISBN=[ISBN] | -name="[BookName]" | -author="[Author]" | -keyword="[Keyword]")?
+  - 输出：[ISBN]\t[BookName]\t[Author]\t[Keyword]\t[Price]\t[库存数量]\n
+- 购买图书
+  - 输入：buy [ISBN] [Quantity]
+  - 输出：无
+- 选择图书
+  - 输入：select [ISBN]
+  - 输出：无
+- 修改图书信息
+  - 输入：modify (-ISBN=[ISBN] | -name="[BookName]" | -author="[Author]" | -keyword="[Keyword]" | -price=[Price])+
+  - 输出：无
+- 图书进货
+  - 输入：import [Quantity] [TotalCost]
+  - 输出：无
 
-### 信息管理模块
-- 创建信息：create type[信息类型] information[信息内容]
-- 输出结果：succeed/fail
-- 修改信息：modify type[信息类型] index[信息索引] information[信息内容]
-- 输出结果：succeed/fail
-- 查询信息：inquiry type[信息类型] index[信息索引]
-- 输出结果：information[信息内容]
+### 日志模块
+- 财务纪录查询：
+  - 输入：show finance ([Count])?
+  - 输出：+ [收入] - [支出]\n
+- 生成财务纪录报告：
+  - 输入：report finance
+  - 输出：财务报表
+- 生成全体员工工作情况报告：
+  - 输入：report employee
+  - 输出：全体员工工作情况表
+- 生成日志：
+  - 输入：log
+  - 输出：日志记录
