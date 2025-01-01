@@ -83,7 +83,7 @@
   - [Privilege]  
     合法字符集：数字；  
     最大长度：1。
-- 存储方式：userID.txt存头结点，account.txt存块
+- 存储方式：UserID存头结点，UserID存块，account存所有账户信息
 ### 图书信息
 - 需要存储的信息：
   - [ISBN]（独特）  
@@ -105,10 +105,10 @@
     最大长度：13；  
     特殊说明：本系统中浮点数输入输出精度固定为小数点后两位。
 - 存储方式：
-  - ISBN.txt存头结点，ISBN-body.txt存块
-  - name.txt存头结点，name-body.txt存块
-  - author.txt存头结点，author-body.txt存块
-  - keyword.txt存头结点，keyword-body.txt存块
+  - ISBN存头结点，ISBN-no存块
+  - BookName存头结点，BookName-no存块
+  - Author存头结点，Author-no.txt存块
+  - Keyword存头结点，Keyword-no存块
 ### 日志信息
 - 需要存储的信息：
   - 交易金额：  
@@ -118,16 +118,40 @@
     操作类型  
     操作内容
 - 存储方式：
-  - finance.txt存财务纪录
-  - employee.txt存头结点，employee-body.txt存员工工作情况
+  - deal存财务纪录
+  - employee存头结点，employee-no存员工工作情况
 ---
 ## 类、结构体设计
-- Account类：登录账户、注册账户、注销账户、修改密码、创建账户、删除账户
-- Book类：检索图书、购买图书、选择图书、修改图书信息、图书进货
+### Account类
+```cpp
+int getPrivilege(); // 获得当前privilege
+LoginStack(); // 构造函数
+void end(); // 结束程序时将数据写入文件
+void su(std::string& UserID, std::string& Password); // 登录账户（有密码）
+void su(std::string& UserID); // 登录账户（无密码）
+void logout(); // 注销账户
+void Register(std::string& UserID, std::string& Password, std::string& Username); // 注册账户
+void passwd(std::string& UserID, std::string& CurrentPassword, std::string& NewPassword); // 修改密码
+void passwd(std::string& UserID, std::string& NewPassword); // 修改密码
+void useradd(std::string& UserID, std::string& Password, std::string& Privilege, std::string& Username); // 创建账户
+void Delete(std::string& UserID); // 删除账户
+void createroot(); // 创建root账户
+```
+### Book类
+```cpp
+BookSystem(); // 构造函数
+void end(); // 结束程序时将数据写入文件
+void show(std::string& input); // 检索图书
+void buy(std::string& ISBN, std::string& Quantity, Diary& diary); // 购买图书
+void select(std::string& ISBN, LoginStack& login_stack); // 选择图书
+void modify(std::vector<std::string>& input, LoginStack& login_stack); // 修改图书信息
+void import(std::string& Quantity, std::string& TotalCost, LoginStack& login_stack, Diary& diary); // 图书进货
+```
 - Diary类：财务纪录查询、生成财务纪录报告、生成全体员工工作情况报告、生成日志
 - error类：抛出错误
 - Memory类：对不同对象进行存储，实现文件读写
 - TokenScanner类：检查指令合法性
+
 ---
 ## 其他补充说明
 无

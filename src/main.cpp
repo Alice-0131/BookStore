@@ -91,7 +91,7 @@ void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_sy
         if (scanner.hasMoreTokens()) {
             error("Invalid\n");
         }
-        login_stack.useradd(UserID, Password, Privilege, Username);
+        login_stack.useradd(UserID, Password, Privilege, Username, diary);
     } else if (token == "delete") {
         std::string UserID = scanner.nextToken();
         if (scanner.hasMoreTokens()) {
@@ -135,7 +135,7 @@ void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_sy
             tmp = scanner.nextToken();
             input.push_back(tmp);
         }
-        book_system.modify(input, login_stack);
+        book_system.modify(input, login_stack, diary);
     } else if (token == "import") {
         if (login_stack.getPrivilege() < 3) {
             error("Invalid\n");
@@ -148,9 +148,9 @@ void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_sy
     } else if (token == "report") {
         token = scanner.nextToken();
         if (token == "finance") {
-
+            diary.ReportFinance(book_system);
         } else if (token == "employee") {
-
+            diary.ReportEmployee();
         }
     } else {
         error("Invalid\n");

@@ -1,6 +1,7 @@
 #include "../include/Account.hpp"
 #include "../include/error.hpp"
 #include "../include/File.hpp"
+#include "../include/Diary.hpp"
 #include <string>
 #include <vector>
 #include <cstring>
@@ -136,7 +137,7 @@ void LoginStack::passwd(std::string &UserID, std::string &NewPassword) {
     account_river_.write(acc, no[0]);
 }
 
-void LoginStack::useradd(std::string &UserID, std::string &Password, std::string &Privilege, std::string &Username) {
+void LoginStack::useradd(std::string &UserID, std::string &Password, std::string &Privilege, std::string &Username, Diary& diary) {
     Check::checkAccount1(UserID);
     Check::checkAccount1(Password);
     int Privilege_ = Check::checkAccount3(Privilege);
@@ -155,6 +156,13 @@ void LoginStack::useradd(std::string &UserID, std::string &Password, std::string
     UserID_file.Insert(size, UserID);
     ++size;
     account_river_.write_info(size, 1);
+    Account account;
+    account_river_.read(account, stack[stack.size() - 1].first);
+    Operation operation(account.UserID, "account", acc.UserID, "useradd", Username);
+    diary.operation_river_.get_info(size, 1);
+    diary.operation_river_.write(operation, size);
+    ++size;
+    diary.operation_river_.write_info(size, 1);
 }
 
 void LoginStack::Delete(std::string &UserID) {

@@ -17,7 +17,11 @@ struct Book {
     Book(std::string& ISBN);
 };
 
+class Diary;
+class LoginStack;
+
 class BookSystem {
+    friend class Diary;
 public:
     memory ISBN_file;
     memory BookName_file;
@@ -30,7 +34,7 @@ public:
     void show(std::string& input);
     void buy(std::string& ISBN, std::string& Quantity, Diary& diary);
     void select(std::string& ISBN, LoginStack& login_stack);
-    void modify(std::vector<std::string>& input, LoginStack& login_stack);
+    void modify(std::vector<std::string>& input, LoginStack& login_stack, Diary& diary);
     void import(std::string& Quantity, std::string& TotalCost, LoginStack& login_stack, Diary& diary);
 };
 #endif //BOOK_HPP

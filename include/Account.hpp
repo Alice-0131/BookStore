@@ -1,6 +1,7 @@
 #ifndef ACCOUNT_HPP
 #define ACCOUNT_HPP
 #include "File.hpp"
+#include "Diary.hpp"
 #include <string>
 #include <vector>
 
@@ -15,6 +16,9 @@ struct Account {
     Account(const std::string& UserID, const std::string& Password, int Privilege);
     Account(const std::string& UserID, const std::string& Password, int Privilege, const std::string& Username);
 };
+
+class BookSystem;
+class Diary;
 
 class LoginStack {
     friend class BookSystem;
@@ -34,7 +38,7 @@ public:
     void Register(std::string& UserID, std::string& Password, std::string& Username);
     void passwd(std::string& UserID, std::string& CurrentPassword, std::string& NewPassword);
     void passwd(std::string& UserID, std::string& NewPassword);
-    void useradd(std::string& UserID, std::string& Password, std::string& Privilege, std::string& Username);
+    void useradd(std::string& UserID, std::string& Password, std::string& Privilege, std::string& Username, Diary& diary);
     void Delete(std::string& UserID);
     void createroot();
 };

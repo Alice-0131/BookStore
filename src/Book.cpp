@@ -153,7 +153,7 @@ void BookSystem::select(std::string &ISBN, LoginStack &login_stack) {
     login_stack.stack[login_stack.stack.size() - 1].second = no[0];
 }
 
-void BookSystem::modify(std::vector<std::string> &input, LoginStack& login_stack) {
+void BookSystem::modify(std::vector<std::string> &input, LoginStack& login_stack, Diary& diary) {
     int book_no = login_stack.stack[login_stack.stack.size() - 1].second;
     if (book_no == -1) {
         error("Invalid\n");
@@ -275,6 +275,16 @@ void BookSystem::modify(std::vector<std::string> &input, LoginStack& login_stack
         book.Price = PRICE;
     }
     book_river_.write(book, book_no);
+    Account account;
+    login_stack.account_river_.read(account, login_stack.stack[login_stack.stack.size() - 1].first);
+    int size;
+    diary.operation_river_.get_info(size, 1);
+    for (int i = 0; i < input.size(); ++i) {
+        Operation operation(account.UserID, "book", book.ISBN, "modify", input[i]);
+        diary.operation_river_.write(operation, size);
+        ++size;
+    }
+    diary.operation_river_.write_info(size, 1);
 }
 
 void BookSystem::import(std::string &Quantity, std::string &TotalCost, LoginStack& login_stack, Diary& diary) {
@@ -294,4 +304,11 @@ void BookSystem::import(std::string &Quantity, std::string &TotalCost, LoginStac
     diary.deal_river_.write(deal, size);
     ++size;
     diary.deal_river_.write_info(size, 1);
+    Account account;
+    login_stack.account_river_.read(account, login_stack.stack[login_stack.stack.size() - 1].first);
+    diary.operation_river_.get_info(size, 1);
+    Operation operation(account.UserID, "book", book.ISBN, "import", Quantity);
+    diary.operation_river_.write(operation, size);
+    ++size;
+    diary.operation_river_.write_info(size, 1);
 }
