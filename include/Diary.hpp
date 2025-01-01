@@ -9,9 +9,10 @@
 struct Deal {
     bool sign = false;
     double money = 0;
+    char book[21] = {0};
 
     Deal() = default;
-    Deal(bool sign, double money);
+    Deal(bool sign, double money, char book[]);
 };
 
 struct Operation {
@@ -39,7 +40,7 @@ public:
     void ShowFinance(std::string& Count);
     void ReportFinance(BookSystem& book_system);
     void ReportEmployee();
-    void Log();
+    void Log(BookSystem& book_system);
 };
 
 #endif //DIARY_HPP

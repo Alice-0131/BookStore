@@ -125,7 +125,7 @@ void BookSystem::buy(std::string &ISBN, std::string &Quantity, Diary& diary) {
     if (quantity > book.Inventory) {
         error("Invalid\n");
     }
-    Deal deal(true, book.Price * quantity);
+    Deal deal(true, book.Price * quantity, book.ISBN);
     int size;
     diary.deal_river_.get_info(size, 1);
     diary.deal_river_.write(deal, size);
@@ -298,7 +298,7 @@ void BookSystem::import(std::string &Quantity, std::string &TotalCost, LoginStac
     book_river_.read(book, book_no);
     book.Inventory += quantity;
     book_river_.write(book, book_no);
-    Deal deal(false, total_cost);
+    Deal deal(false, total_cost, book.ISBN);
     int size;
     diary.deal_river_.get_info(size, 1);
     diary.deal_river_.write(deal, size);

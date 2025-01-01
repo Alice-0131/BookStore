@@ -7,7 +7,9 @@
 #include <iostream>
 #include <iomanip>
 
-Deal::Deal(bool sign, double money):sign(sign), money(money){}
+Deal::Deal(bool sign, double money, char book[]):sign(sign), money(money) {
+    strcpy(this->book, book);
+}
 
 Operation::Operation(char UserID[], std::string type, char Object[], std::string Order, std::string& Content) {
     strcpy(this->UserID, UserID);
@@ -93,6 +95,25 @@ void Diary::ReportEmployee() {
     }
 }
 
-void Diary::Log() {
-
+void Diary::Log(BookSystem& book_system) {
+    this->ReportEmployee();
+    int size;
+    deal_river_.get_info(size, 1);
+    if (size <= 1) {
+        std::cout << "There is " << size << " transaction in total.\n";
+    } else {
+        std::cout << "There are " << size << " transactions in total.\n";
+    }
+    std::cout << "The Book's ISBN\t" << "Income and Expenditure\n";
+    Deal deal;
+    for (int i = 0; i < size; ++i) {
+        deal_river_.read(deal, i);
+        std::cout << deal.book << '\t';
+        if (deal.sign) {
+            std::cout << "Income: ";
+        } else {
+            std::cout << "Expenditure: ";
+        }
+        std::cout << deal.money << '\n';
+    }
 }

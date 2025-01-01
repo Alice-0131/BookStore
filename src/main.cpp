@@ -144,7 +144,7 @@ void processLine(std::string& line, LoginStack& login_stack, BookSystem& book_sy
         std::string TotalCost = scanner.nextToken();
         book_system.import(Quantity, TotalCost, login_stack, diary);
     } else if (token == "log") {
-
+        diary.Log(book_system);
     } else if (token == "report") {
         token = scanner.nextToken();
         if (token == "finance") {
