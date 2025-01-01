@@ -34,7 +34,7 @@
 ### Diary.hpp/Diary.cpp
 包含实现日志相关指令的函数。
 ### TokenScanner.hpp/TokenScanner.cpp
-包含检查指令合法性的函数。
+包含将指令分块的函数。
 ### error.hpp/error.cpp
 包含检查指令合法性、抛出错误的函数。
 
@@ -122,35 +122,163 @@
   - employee存头结点，employee-no存员工工作情况
 ---
 ## 类、结构体设计
-### Account类
+### Account结构体
+用于存储Account的各种信息
 ```cpp
-int getPrivilege(); // 获得当前privilege
-LoginStack(); // 构造函数
-void end(); // 结束程序时将数据写入文件
-void su(std::string& UserID, std::string& Password); // 登录账户（有密码）
-void su(std::string& UserID); // 登录账户（无密码）
-void logout(); // 注销账户
-void Register(std::string& UserID, std::string& Password, std::string& Username); // 注册账户
-void passwd(std::string& UserID, std::string& CurrentPassword, std::string& NewPassword); // 修改密码
-void passwd(std::string& UserID, std::string& NewPassword); // 修改密码
-void useradd(std::string& UserID, std::string& Password, std::string& Privilege, std::string& Username); // 创建账户
-void Delete(std::string& UserID); // 删除账户
-void createroot(); // 创建root账户
+struct Account {
+    char UserID[31] = {0};
+    char Password[31] = {0};
+    char Username[31] = {0};
+    int Privilege = 0;
+
+    Account() = default;
+    Account(const std::string& UserID, const std::string& Password, const std::string& Username);
+    Account(const std::string& UserID, const std::string& Password, int Privilege);
+    Account(const std::string& UserID, const std::string& Password, int Privilege, const std::string& Username);
+};
 ```
-### Book类
+### LoginStack类
+用于处理登录栈、账户系统
 ```cpp
-BookSystem(); // 构造函数
-void end(); // 结束程序时将数据写入文件
-void show(std::string& input); // 检索图书
-void buy(std::string& ISBN, std::string& Quantity, Diary& diary); // 购买图书
-void select(std::string& ISBN, LoginStack& login_stack); // 选择图书
-void modify(std::vector<std::string>& input, LoginStack& login_stack); // 修改图书信息
-void import(std::string& Quantity, std::string& TotalCost, LoginStack& login_stack, Diary& diary); // 图书进货
+class LoginStack {
+    friend class BookSystem;
+private:
+    std::vector<std::pair<int, int>> stack; // No_of_Account,No_of_Book
+    int privilege = 0;
+    memory UserID_file;
+    MemoryRiver<Account> account_river_;
+
+public:
+    int getPrivilege();
+    LoginStack();
+    void end();
+    void su(std::string& UserID, std::string& Password);
+    void su(std::string& UserID);
+    void logout();
+    void Register(std::string& UserID, std::string& Password, std::string& Username);
+    void passwd(std::string& UserID, std::string& CurrentPassword, std::string& NewPassword);
+    void passwd(std::string& UserID, std::string& NewPassword);
+    void useradd(std::string& UserID, std::string& Password, std::string& Privilege, std::string& Username, Diary& diary);
+    void Delete(std::string& UserID);
+    void createroot();
+};
 ```
-- Diary类：财务纪录查询、生成财务纪录报告、生成全体员工工作情况报告、生成日志
-- error类：抛出错误
-- Memory类：对不同对象进行存储，实现文件读写
-- TokenScanner类：检查指令合法性
+### Book结构体
+用于存储Book的各种信息
+```cpp
+struct Book {
+    char ISBN[21] = {0};
+    char BookName[61] = {0};
+    char Author[61] = {0};
+    char Keyword[61] = {0};
+    int Inventory = 0;
+    double Price = 0;
+
+    Book() = default;
+    Book(std::string& ISBN);
+};
+```
+### BookSystem类
+用于处理图书管理系统
+```cpp
+BookSystem();
+void end();
+void show(std::string& input);
+void buy(std::string& ISBN, std::string& Quantity, Diary& diary);
+void select(std::string& ISBN, LoginStack& login_stack);
+void modify(std::vector<std::string>& input, LoginStack& login_stack, Diary& diary);
+void import(std::string& Quantity, std::string& TotalCost, LoginStack& login_stack, Diary& diary);
+```
+### Deal结构体
+用于存储每一笔交易的信息
+```cpp
+struct Deal {
+    bool sign = false;
+    double money = 0;
+    char book[21] = {0};
+
+    Deal() = default;
+    Deal(bool sign, double money, char book[]);
+};
+```
+### Operation结构体
+用于存储员工的操作信息
+```cpp
+struct Operation {
+    char UserID[31] = {0};
+    char type[10] = {0};
+    char Object[31] = {0};
+    char Order[31] = {0};
+    char Content[75] = {0};
+
+    Operation(char UserID[], std::string type, char Object[], std::string Order, std::string& Content);
+    Operation() = default;
+};
+```
+### Diary类
+用于处理日志系统
+```cpp
+class Diary {
+    friend class BookSystem;
+    friend class LoginStack;
+
+    MemoryRiver<Deal> deal_river_;
+    MemoryRiver<Operation> operation_river_;
+public:
+    Diary();
+    void ShowFinance(std::string& Count);
+    void ReportFinance(BookSystem& book_system);
+    void ReportEmployee();
+    void Log(BookSystem& book_system);
+};
+```
+### ErrorException类
+用于处理错误信息
+```cpp
+class ErrorException : public std::exception {
+public:
+    explicit ErrorException(std::string message);
+
+    std::string getMessage() const;
+
+private:
+    std::string message;
+};
+```
+### Check类
+用于检查指令合法性
+```cpp
+class Check {
+public:
+    static void checkAccount1(std::string& input); //[UserID], [Password], [CurrentPassword], [NewPassword]
+    static void checkAccount2(std::string& input); //[Username]
+    static int checkAccount3(std::string& input); //[Privilege]
+    static void checkBook1(std::string& input); //[ISBN]
+    static void checkBook2(std::string& input); //[BookName], [Author]
+    static void checkBook3(std::string& input); //单个[Keyword]
+    static std::vector<std::string> checkKeyword(const std::string& input, bool flag); //多个[Keyword]
+    static int checkBook4(std::string& input); //[Quantity]
+    static double checkBook5(std::string& input); //[Price], [TotalCost]
+};
+```
+### Memory类、MemoryRiver类
+对不同对象进行存储，实现文件读写
+### TokenScanner类
+用于将指令分块
+```cpp
+class TokenScanner {
+public:
+    TokenScanner(std::string& input);
+    std::string nextToken();
+    bool hasMoreTokens();
+
+private:
+    std::string str;
+    int index;
+
+    void skipWhitespaces();
+};
+```
 
 ---
 ## 其他补充说明
